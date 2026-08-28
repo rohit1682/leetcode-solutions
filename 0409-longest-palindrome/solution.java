@@ -1,0 +1,66 @@
+public class Solution {
+    public int longestPalindrome(String s) {
+        // Initialize a set to keep track of characters with odd frequencies
+        HashSet<Character> charSet = new HashSet<>();
+        // Initialize the length of the longest palindrome
+        int length = 0;
+        
+        // Iterate over each character in the string
+        for (char c : s.toCharArray()) {
+            // If the character is already in the set, remove it and increase the length by 2
+            if (charSet.contains(c)) {
+                charSet.remove(c);
+                length += 2;
+            } else {
+                // If the character is not in the set, add it to the set
+                charSet.add(c);
+            }
+        }
+        
+        // If there are any characters left in the set, add 1 to the length for the middle character
+        if (!charSet.isEmpty()) {
+            length += 1;
+        }
+        
+        // Return the total length of the longest palindrome
+        return length;
+    }
+}
+
+// class Solution {
+//     public int longestPalindrome(String s) {
+//         if(s.length() <= 1) return s.length();
+//         s.toLowerCase();
+//         if((s.length() == 2) && (s.charAt(0) != (s.charAt(1)))) return 1;
+//         int freq[] = new int[1000];
+//         int max = -1;
+
+//         for(int i=0; i<s.length(); i++)
+//         {
+//             freq[s.charAt(i)]++;
+//             if(max <= freq[s.charAt(i)]) max = freq[s.charAt(i)];
+//         }
+
+//         int flag = 0;
+//         int ans = 0;
+
+//         for(int i = 0; i<1000; i++)
+//         {
+//             if(freq[i] == 1) flag = 1;
+
+//             else {
+//                 if( ((freq[i] % 2) != 0) && (freq[i] != max)){
+//                     freq[i]--;
+//                 }
+
+//                 ans += freq[i]; 
+//             }
+//         }
+
+//         if((flag == 1) && ((max % 2) == 0)){
+//             ans++;
+//         }
+
+//         return ans;
+//     }
+// }

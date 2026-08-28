@@ -1,0 +1,15 @@
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var sumZero = function(n) {
+    let ans = [];
+    for(let i=1; i<=Math.floor(n/2); i++) {
+        ans.push(i);
+        ans.push(-i);
+    }
+    if(n%2 !== 0) {
+        ans.push(0);
+    }
+    return ans;
+};
